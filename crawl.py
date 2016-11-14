@@ -13,7 +13,7 @@ def get_content(link, f):
     soup = BeautifulSoup(movie_page.content, "lxml")
 
     for row in soup.find_all('a',class_='bookTitle'):
-        f.write('www.goodreads.com'+row.get('href')+'\n')
+        f.write('https://www.goodreads.com'+row.get('href')+'\n')
 
 link = "https://www.goodreads.com/list/show/429.The_BOOK_was_BETTER_than_the_MOVIE?page="
 
