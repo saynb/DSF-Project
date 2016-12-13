@@ -120,13 +120,13 @@ for url_first in fin:
             print publish_date
             
             #num_reviews
-            num_reviews = soup.find_all('span',attrs={"class":'value-title'})[0].text
+            num_reviews = soup.find_all('span',attrs={"class":"count"})[0].text
+            print num_reviews
             m = re.search('(.*?)\s', num_reviews)
             if m:
                 num_reviews = int(m.group(1).replace(',', ''))
                 
             print ("\nnum_reviews = ",num_reviews)
-
 
             df = pd.DataFrame({'Book Name':book_name, 'Author':author, 'Awards List':awards_string, 
                                'Genres':[genre_list], 'Characters':[character_list], 'Other editions':other_editions,
@@ -134,19 +134,15 @@ for url_first in fin:
                               'publish_date':publish_date, 'Pages':pages})
             df_book = df_book.append(df,ignore_index=True)
 
-
             if (i%20 == 0):
                 df_book.index += (i-19)
                 df_book.to_csv('goodreads_data_new.csv', mode='a', header=(True if i<21 else False), encoding="utf-8")
                 df_book = pd.DataFrame()
             i +=1
-            
         
-                
     except Exception as exception:
-        
 #                 df.to_csv('skipped.csv', mode='a', header=False, ignore_index=True, encoding="utf-8")
-            f = open('skipped_files', 'a')
+            f = open('goodreads_skipped', 'a')
             f.write(url_first + " "+type(exception).__name__+"\n")
             f.close()
             print type(exception).__name__
@@ -156,6 +152,9 @@ for url_first in fin:
             i +=1
             
 
+df_book.index += (i-19)
+df_book.to_csv('goodreads_data_new.csv', mode='a', header=(True if i<21 else False), encoding="utf-8")
+df_book = pd.DataFrame()
 
 fin.close()
 df_book
