@@ -1,13 +1,7 @@
-import matplotlib as mlp
 import scipy
 import numpy as np
-import sympy
-from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
 import pandas as pd
-from mpl_toolkits.basemap import Basemap
-from matplotlib.patches import Polygon
-from matplotlib.collections import PatchCollection
 from sklearn.preprocessing import scale
 from scipy.stats.stats import spearmanr 
 from sklearn.linear_model import LinearRegression
@@ -20,9 +14,6 @@ import requests
 import re
 import fileinput
 import os,sys
-# import sys
-
-
 
 
 def clean_text(text):
@@ -143,12 +134,12 @@ for url_first in fin:
     except Exception as exception:
 #                 df.to_csv('skipped.csv', mode='a', header=False, ignore_index=True, encoding="utf-8")
             f = open('goodreads_skipped', 'a')
-            f.write(url_first + " "+type(exception).__name__+"\n")
-            f.close()
             print type(exception).__name__
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print(exc_type, fname, exc_tb.tb_lineno)
+            f.write(url_first + " "+type(exception).__name__+" "+exc_tb.tb_lineno+"\n")
+            f.close()
             i +=1
             
 
