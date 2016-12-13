@@ -1,3 +1,5 @@
 .DS_Store
 .ipynb_chec*
 .ipynb_checkpoints/*
+omdb_scraper/.ipynb_chec*
+omdb_scraper/.ipynb_checkpoints/*
