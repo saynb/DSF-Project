@@ -13,12 +13,12 @@ def clean_text(text):
 def getnum(s):
 	return ''.join(s.split(','))
 
-with io.open("imdb_urls_new.txt", "r", encoding="utf-8") as my_file:
+with io.open("imdb_urls.txt", "r", encoding="utf-8") as my_file:
      movie_file = my_file.read() 
 
-movie_data = open('movie_data_new.csv','wb')
+movie_data = open('movie_data.csv','w')
 
-skipped = open('skipped_urls_imdb_data.txt','wb')
+skipped = open('skipped_urls_imdb_data.txt','w')
 skipped_urls = []
 
 def get_content(link, f):

@@ -6,10 +6,9 @@ import time
 def is_ascii(s):
     return all(ord(c) < 128 for c in s)
 
-book_better = io.open('book_was_better_names.txt','r')
-movie_better = io.open('movie_was_better_names.txt','r')
+book_names = io.open('book_names.txt','r')
 
-imdb_urls = open('imdb_urls.txt','wb')
+imdb_urls = open('imdb_urls.txt','w')
 
 def get_content(link, f):
 	movie_page = requests.get(link)
@@ -27,7 +26,7 @@ def get_content(link, f):
 link = 'http://www.imdb.com/find?ref_=nv_sr_fn&q='
 
 iter=0
-for name in book_better:
+for name in book_names:
 	iter = iter+1
 	if(is_ascii(name)):
 		link1 = link+name

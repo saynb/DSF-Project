@@ -2,8 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-book_better = open('book_was_better.txt','wb')
-movie_better = open('movie_was_better.txt','wb')
+book_links = open('book_links.txt','w')
 
 def clean_text(text):
     return ' '.join(text.split())
@@ -17,15 +16,14 @@ def get_content(link, f):
 
 link = "https://www.goodreads.com/list/show/429.The_BOOK_was_BETTER_than_the_MOVIE?page="
 
-for i in xrange(1,15):
+for i in range(1,15):
     link1 = link+str(i)
-    get_content(link1,book_better)
+    get_content(link1,book_links)
 
 link = "https://www.goodreads.com/list/show/104.The_MOVIE_was_BETTER_than_the_BOOK?page="
 
-for i in xrange(1,10):
+for i in range(1,10):
     link1 = link+str(i)
-    get_content(link1,movie_better)
+    get_content(link1,book_links)
 
-book_better.close()
-movie_better.close()
+book_links.close()
